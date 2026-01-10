@@ -1,4 +1,5 @@
 const express = require("express");
+const session = require("express-session");
 const app = express();
 const cookieParser = require("cookie-parser");
 const path = require("path");
@@ -12,7 +13,7 @@ require("dotenv").config();
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.session({resave:false,saveUninitialized:false,secret:process.env.SESSION_SECRET}));
+app.use(session({resave:false,saveUninitialized:false,secret:process.env.SESSION_SECRET}));
 app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
 
